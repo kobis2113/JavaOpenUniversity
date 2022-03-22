@@ -1,8 +1,10 @@
+package Maman12;
+
 /**
  * This class represents a Flight object.
  * It has many properties of a basic flight and some consts.
  * @author Kobi Shabaton
- * @version 2MIN_TIME22a
+ * @version 2022a
  */
 public class Flight {
     private String _origin;

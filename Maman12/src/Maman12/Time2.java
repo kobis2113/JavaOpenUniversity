@@ -1,3 +1,5 @@
+package Maman12;
+
 /**
  * This class represents a time object.
  * It has many methods which helps working with times.
@@ -13,7 +15,7 @@ public class Time2 {
     private final int MINUTES_IN_DAY = 1440;
 
     /**
-     * Creates a new Time2 object.
+     * Creates a new Maman13.Time2 object.
      * @param h An int representing the amount of hours. Should be between 0 to 23.
      * @param m An int representing the amount of minutes. Should be between 0 to 59.
      */
@@ -23,7 +25,7 @@ public class Time2 {
 
     /**
      * A copy constructor.
-     * @param other An other Time2 object to be copied.
+     * @param other An other Maman13.Time2 object to be copied.
      */
     public Time2(Time2 other){
         this._minFromMid = other._minFromMid;
@@ -65,8 +67,8 @@ public class Time2 {
     }
 
     /**
-     * This methods checks whether two Time2 objects are equal.
-     * @param other The other Time2 object to be compared.
+     * This methods checks whether two Maman13.Time2 objects are equal.
+     * @param other The other Maman13.Time2 object to be compared.
      * @return True if they are equal and false if they are not.
      */
     public boolean equals(Time2 other){
@@ -75,7 +77,7 @@ public class Time2 {
 
     /**
      * This method checks whether a time if before an other time.
-     * @param other The other Time2 object to be compared to.
+     * @param other The other Maman13.Time2 object to be compared to.
      * @return True if the time is before the other one, and false if doesn't.
      */
     public boolean before(Time2 other){
@@ -84,7 +86,7 @@ public class Time2 {
 
     /**
      * This method checks whether a time if after an other time.
-     * @param other The other Time2 object to be compared to.
+     * @param other The other Maman13.Time2 object to be compared to.
      * @return True if the time is after the other one, and false if doesn't.
      */
     public boolean after(Time2 other){
@@ -92,8 +94,8 @@ public class Time2 {
     }
 
     /**
-     * This method calculates the difference between two Time2 objects.
-     * @param other The other Time2 object to be compared to.
+     * This method calculates the difference between two Maman13.Time2 objects.
+     * @param other The other Maman13.Time2 object to be compared to.
      * @return An int representing the difference between the objects.
      */
     public int difference(Time2 other){
@@ -101,7 +103,7 @@ public class Time2 {
     }
 
     /**
-     * This methods takes the Time2 object and creates a string of time.
+     * This methods takes the Maman13.Time2 object and creates a string of time.
      * @return The time in this pattern: hh:mm
      */
     public String toString(){
@@ -111,9 +113,9 @@ public class Time2 {
     }
 
     /**
-     * This method creates a new Time2 object, adds/subs minutes from it, and returns it.
+     * This method creates a new Maman13.Time2 object, adds/subs minutes from it, and returns it.
      * @param num The amount of minutes to add/subs.
-     * @return A new Time2 object.
+     * @return A new Maman13.Time2 object.
      */
     public Time2 addMinutes(int num){
         Time2 newTime = new Time2(this);
@@ -122,7 +124,7 @@ public class Time2 {
         int newTimeFromMidnight = newTime._minFromMid + num;
         newTimeFromMidnight = (newTimeFromMidnight < MIN_TIME) ? newTimeFromMidnight : MINUTES_IN_DAY + newTimeFromMidnight;
 
-        // Sets the new hour and minutes to the new Time2 object.
+        // Sets the new hour and minutes to the new Maman13.Time2 object.
         newTime.setHour((newTimeFromMidnight/MAX_MINUTES % MAX_HOURS));
         newTime.setMinute(newTimeFromMidnight % MAX_MINUTES);
         return newTime;
