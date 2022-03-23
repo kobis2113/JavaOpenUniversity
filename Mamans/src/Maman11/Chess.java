@@ -1,3 +1,4 @@
+package Maman11;
 import java.util.Scanner;
 
 public class Chess {
