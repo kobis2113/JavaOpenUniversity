@@ -8,12 +8,22 @@ public class Chess {
      * In case that they are the from same type, has the same position, or out of bounds, it prints
      * An indecative error message. In case that the input is ok it checks if one of theam threats the other and if
      * it is, it prints the threat. When there is no therat it prints that there is no threat.
+     * @className Chess
+     * @author Kobi Shabaton
+     * @version 2022a
+     * @date 22/3/2022
      */
     public static void main(String[] args) {
-        // variables
+        // Variables
         int rowDiff, colDiff, knightTempRow, knightTempCol;
         String firstPawnName, secondPawnName;
         boolean isThreat = false;
+        char knight = 'k';
+        char rook = 'r';
+        char bishop = 'b';
+        final int MIN_CELL = 0;
+        final int MAX_CELL = 9;
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter the type" +
                 " of the first chessman");
@@ -35,7 +45,10 @@ public class Chess {
             System.out.println("Chessmen should be different from each other");
         }
         // Checking if one of the positions are not in the board
-        else if (row1 < 1 || row1 > 8 || row2 < 1 || row2 > 8 || col1 < 1 || col1 > 8 || col2 < 1 || col2 > 8) {
+        else if (row1 <= MIN_CELL || row1 >= MAX_CELL ||
+                row2 <= MIN_CELL || row2 >= MAX_CELL ||
+                col1 <= MIN_CELL || col1 >= MAX_CELL ||
+                col2 <= MIN_CELL || col2 >= MAX_CELL) {
             System.out.println("Position is not legal");
         }
         // Checking if the pawns has the same position
@@ -43,16 +56,17 @@ public class Chess {
             System.out.println("Chessmen positions should not be identical");
         }
         else{
-            if(first == 'k'){
+            if(first == knight){
                 // If the first one in a knight, the second must be a bishop or a rook.
-                if(second == 'r')
+                if(second == rook)
                     secondPawnName = "rook";
                 else
                     secondPawnName = "bishop";
                 // Option one
                 knightTempCol = col1 - 1;
                 knightTempRow = row1 - 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -61,7 +75,8 @@ public class Chess {
                 // Option two
                 knightTempCol = col1 - 2;
                 knightTempRow = row1 - 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -70,7 +85,8 @@ public class Chess {
                 // Option three
                 knightTempCol = col1 - 2;
                 knightTempRow = row1 + 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -79,7 +95,8 @@ public class Chess {
                 // Option four
                 knightTempCol = col1 - 1;
                 knightTempRow = row1 + 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -88,7 +105,8 @@ public class Chess {
                 // Option five
                 knightTempCol = col1 + 1;
                 knightTempRow = row1 + 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -97,7 +115,8 @@ public class Chess {
                 // Option six
                 knightTempCol = col1 + 2;
                 knightTempRow = row1 + 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -106,7 +125,8 @@ public class Chess {
                 // Option seven
                 knightTempCol = col1 + 2;
                 knightTempRow = row1 - 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
@@ -115,16 +135,17 @@ public class Chess {
                 // Option eight
                 knightTempCol = col1 + 1;
                 knightTempRow = row1 - 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col2 && knightTempRow == row2){
                         isThreat = true;
                         System.out.println("knight threats " + secondPawnName);
                     }
                 }
             }
-            else if(first == 'b'){
+            else if(first == bishop){
                 // If the first one in a bishop, the second must be a rook or a knight.
-                if(second == 'r')
+                if(second == rook)
                     secondPawnName = "rook";
                 else
                     secondPawnName = "knight";
@@ -141,9 +162,9 @@ public class Chess {
                     System.out.println("bishop threats " + secondPawnName);
                 }
             }
-            else if (first == 'r') {
+            else if (first == rook) {
                 // If the first one in a rook, the second must be a bishop or a knight.
-                if(second == 'b')
+                if(second == bishop)
                     secondPawnName = "bishop";
                 else
                     secondPawnName = "knight";
@@ -152,16 +173,17 @@ public class Chess {
                     System.out.println("rook threats " + secondPawnName);
                 }
             }
-            if(second == 'k'){
+            if(second == knight){
                 // If the second one in a knight, the first must be a bishop or a rook.
-                if(first == 'r')
+                if(first == rook)
                     firstPawnName = "rook";
                 else
                     firstPawnName = "bishop";
                 // Option one
                 knightTempCol = col2 - 1;
                 knightTempRow = row2 - 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -170,7 +192,8 @@ public class Chess {
                 // Option two
                 knightTempCol = col2 - 2;
                 knightTempRow = row2 - 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -179,7 +202,8 @@ public class Chess {
                 // Option three
                 knightTempCol = col2 - 2;
                 knightTempRow = row2 + 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -188,7 +212,8 @@ public class Chess {
                 // Option four
                 knightTempCol = col2 - 1;
                 knightTempRow = row2 + 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -197,7 +222,8 @@ public class Chess {
                 // Option five
                 knightTempCol = col2 + 1;
                 knightTempRow = row2 + 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -206,7 +232,8 @@ public class Chess {
                 // Option six
                 knightTempCol = col2 + 2;
                 knightTempRow = row2 + 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -215,7 +242,8 @@ public class Chess {
                 // Option seven
                 knightTempCol = col2 + 2;
                 knightTempRow = row2 - 1;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
@@ -224,16 +252,17 @@ public class Chess {
                 // Option eight
                 knightTempCol = col2 + 1;
                 knightTempRow = row2 - 2;
-                if (knightTempRow > 0 && knightTempRow < 9  && knightTempCol > 0 && knightTempCol < 9) {
+                if (knightTempRow > MIN_CELL && knightTempRow < MAX_CELL
+                        && knightTempCol > MIN_CELL && knightTempCol < MAX_CELL) {
                     if(knightTempCol == col1 && knightTempRow == row1){
                         isThreat = true;
                         System.out.println("knight threats " + firstPawnName);
                     }
                 }
             }
-            else if(second == 'b'){
+            else if(second == bishop){
                 // If the second one in a bishop, the first must be a rook or a knight.
-                if(first == 'r')
+                if(first == rook)
                     firstPawnName = "rook";
                 else
                     firstPawnName = "knight";
@@ -250,9 +279,9 @@ public class Chess {
                     System.out.println("bishop threats " + firstPawnName);
                 }
             }
-            else if (second == 'r') {
+            else if (second == rook) {
                 // If the second one in a rook, the first must be a bishop or a knight.
-                if(first == 'b')
+                if(first == bishop)
                     firstPawnName = "bishop";
                 else
                     firstPawnName = "knight";
