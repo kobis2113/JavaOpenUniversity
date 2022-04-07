@@ -54,7 +54,7 @@ public class Time2 {
      */
     public void setMinute(int num){
         if(num >= MIN_TIME && num < MAX_MINUTES)
-            this._minFromMid = this._minFromMid / MAX_MINUTES + num;
+            this._minFromMid = (this._minFromMid / MAX_MINUTES)*MAX_MINUTES + num;
     }
 
     /**
