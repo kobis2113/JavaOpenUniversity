@@ -1,5 +1,3 @@
-package Maman12;
-
 /**
  * This class represents a Flight object.
  * It has many properties of a basic flight and some consts.
@@ -109,7 +107,14 @@ public class Flight {
      */
     public void setNoOfPassengers(int noOfPassengers) {
         if(noOfPassengers < MIN) this._noOfPassengers = MIN;
-        else this._noOfPassengers = noOfPassengers > MAX_CAPACITY ? MAX_CAPACITY : noOfPassengers;
+        else if(noOfPassengers >= MAX_CAPACITY){
+            this._noOfPassengers = MAX_CAPACITY;
+            setIsFull(true);
+        }
+        else{
+            this._noOfPassengers = noOfPassengers;
+            setIsFull(false);
+        }
     }
 
     /**
@@ -198,7 +203,7 @@ public class Flight {
      * @param other The other Flight object to be compared.
      * @return True if the flight is earlier then the other and false if it doesn't.
      */
-    public boolean isEarlier(Flight other){
+    public boolean landsEarlier(Flight other){
         return this.getArrivalTime().before(other.getArrivalTime());
     }
 
