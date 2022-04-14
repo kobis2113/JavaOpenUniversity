@@ -1,39 +1,14 @@
 package Maman14;
 
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Ex14 {
-    private static final int MIN = 0;
-    public static boolean what(int [][] m)
-    {
-        int n = m.length;
-        for (int x = 0; x < n; x++)
-            for (int y = 0; y < (n - 1); y++)
-                if (m[x][y] > m[x][y + 1]) return false;
-        for (int x = 0; x < n; x++)
-            for (int y = 0; y < (n - 1); y++)
-                if (m[y][x] > m[y + 1][x]) return false;
-        return true;
-    }
+    /*
+     * Question 1
+     * A. 3, 5 are the right
+     *******************************************/
 
-    public static boolean riddle(int [][] m, int val)
-    {
-        int n = m.length;
-        for(int x=0; x<n; x++)
-            for (int y=0; y<n; y++)
-                if(m[x][y] == val) return true;
-        return false;
-    }
-    public static boolean test(int [][] m) {
-        int n = m.length;
-        for (int r = 0; r < (n - 1); r++)
-            for (int c = 0; c < n; c++)
-                for (int i = 0; i < n; i++)
-                    if (m[r][c] > m[r + 1][i]) return false;
-        return true;
-    }
+    private static final int MIN = 0;
 
     /**
      * This method goes over an array, and checks if a given value is in this array.
@@ -213,16 +188,58 @@ public class Ex14 {
         return lengthFlat(arr, index + 1, firstNum, secondNum) + 1;
     }
 
-    public static void main(String[] args) {
-        // What - goes over each cell and checks if the cell next to him(right and below) is larger.
-        // Riddle - checks if a given value is in the array
-        // Test- checks if all the values in the next col in larger then each cell in the previous col
-        System.out.println(strictlyIncreasing(new int[]{1,2,3}));
-        System.out.println(subArrayFormula(7));
-        /**
-         * Question 1
-         * A. 3, 5 are the right
-         */
+    /**
+     * This method find the length of the maximum trace inside the given array.
+     * A trace is defined by cells close to each other and only if they 1 or 0. if its -1
+     * the trace ends. if the row number is even, you can only move right,
+     * and if it is odd you can only move left. in both cases you can move down.
+     * @param mat The 2d array to find it's maximum trace.
+     * @return The length of the longest trace inside the given array.
+     */
+    public static int findMaximum(int[][] mat){
+        // check if the array is empty or the first cell is not valid (equals to -1).
+        if(mat.length == 0 || mat[0].length == 0 || mat[0][0] == -1){
+            return 0;
+        }
+
+        // calling the overloaded method from (0,0).
+        return findMaximum(mat, 0, 0);
+    }
+
+    /**
+     * This method is an overload for "findMaximum(int[][] mat)". it does the same thing
+     * as the other, bot it calculates length of the maximum trace inside the given mat
+     * from a specific cell inside the given array.
+     * @param mat The 2d array to find it's maximum trace.
+     * @param row The row of the wanted cell.
+     * @param col The col of the wanted cell.
+     * @return The length of the longest trace inside the given array.
+     */
+    public static int findMaximum(int[][] mat, int row, int col){
+        // check if we reached to the final cell.
+        if(row == mat.length - 1 && col == mat[row].length - 1){
+            return mat[row][col];
+        }
+        int rowValue = 0;
+        int colValue = 0;
+        // check row even/odd
+        if(row % 2 == 0){
+            // even - check right cell
+            if(col < mat[row].length - 1 && mat[row][col + 1] != -1){
+                colValue = findMaximum(mat, row, col + 1);
+            }
+        }else{
+            // odd - check left cell
+            if(col > 0 && mat[row][col - 1] != - 1){
+                colValue = findMaximum(mat, row, col - 1);
+            }
+        }
+        // check bottom cell
+        if(row < mat.length - 1 && mat[row + 1][col] != -1){
+            rowValue = findMaximum(mat, row + 1, col);
+        }
+        // return largest path
+        return (mat[row][col] == 1 ? 1 : 0) + Math.max(rowValue, colValue);
     }
 }
 
