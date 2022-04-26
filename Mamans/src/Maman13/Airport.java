@@ -11,8 +11,11 @@ import java.util.HashMap;
  * @version 2022a
  */
 public class Airport {
+    // Constants of the class
     private final int MAX_FLIGHTS = 200;
     private final int MIN = 0;
+
+    // Variables of the class
     private Flight[] _flightSchedule;
     private int _noOfFlights;
     private String _city;
@@ -29,11 +32,6 @@ public class Airport {
     }
 
     /**
-     * @return The number of flights.
-     */
-    public int getNumberOfFlights() { return this._noOfFlights; }
-
-    /**
      * Sets a new number of flights to the object.
      * @param noOfFlights An int representing the new number of flights.
      */
@@ -42,10 +40,10 @@ public class Airport {
     }
 
     /**
-     * This method adds a flight to the flight scheduale array, only if there is space left.
+     * This method adds a flight to the flight schedule array, only if there is space left.
      * If there is space left, It updates the number of flights, and sets it into the array.
      * @param f A flight object.
-     * @return True if the flight has been added successfuly and False if it didin't.
+     * @return True if the flight has been added successfully and False if it didn't.
      */
     public boolean addFlight(Flight f){
         // If the flights origin or destination equals to the airport city.
@@ -86,7 +84,7 @@ public class Airport {
      * @return True if the flight was removed successfully and false if its not.
      */
     private boolean removeFlightByIndex(int index){
-        if(index > MIN && index < MAX_FLIGHTS) {
+        if(index >= MIN && index < MAX_FLIGHTS) {
             // Removing the flight in the given index
             this._flightSchedule[index] = null;
 
@@ -107,11 +105,14 @@ public class Airport {
      * @return The first flight with the given place as origin and null if there's no such flight.
      */
     public Time1 firstFlightFromOrigin (String place){
+        Time1 minTime = null;
         for(int flightIndex = MIN; flightIndex < this._noOfFlights; flightIndex++){
             if(this._flightSchedule[flightIndex].getOrigin().equals(this._city))
-                return this._flightSchedule[flightIndex].getDeparture();
+                if(minTime == null) minTime = this._flightSchedule[flightIndex].getDeparture();
+                else if(minTime.before(this._flightSchedule[flightIndex].getDeparture()))
+                    minTime = this._flightSchedule[flightIndex].getDeparture();
         }
-        return null;
+        return minTime;
     }
 
     /**

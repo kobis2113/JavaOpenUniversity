@@ -1,3 +1,4 @@
+package Maman12;
 /**
  * This class represents a time object.
  * It has many methods which helps working with times.

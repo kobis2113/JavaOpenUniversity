@@ -1,3 +1,4 @@
+package Maman12;
 /**
  * This class represents a Flight object.
  * It has many properties of a basic flight and some consts.
