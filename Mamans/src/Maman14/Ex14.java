@@ -1,5 +1,3 @@
-package Maman14;
-
 import java.util.Arrays;
 
 public class Ex14 {
@@ -20,6 +18,8 @@ public class Ex14 {
      * is bigger then val, and if it is not we can jump to next diagonal cell and by that we don't need to go over the
      * whole array. By doing that, in the worst case we will run over the diagonal, and 2 times n (one horizontally and
      * one vertically) -> o(n).
+     * The Space complexity is O(1) because we have only four memory slots and the array is being given so
+     * we son't count it, so O(1).
      * @return True if the value is in the array and False if its not.
      */
     public static boolean findValWhat (int [][] m, int val){
@@ -54,6 +54,8 @@ public class Ex14 {
      * because we know that the array returns true on Test method, so we can only check if the next column cell
      * is bigger then val, and if it is not we can jump to next column cell and by that we don't need to go over the
      * whole array. By doing that, in the worst case we will run over the first column, and then over the last two rows -> o(n).
+     * The Space complexity is O(1) because we have only four memory slots and the array is being given so
+     * we son't count it, so O(1).
      * @return True if the value is in the array and False if its not.
      */
     public static boolean findValTest (int [][] m, int val) {
@@ -92,6 +94,8 @@ public class Ex14 {
      * @param a The array that we want to get it's high order sorted sub arrays.
      * @complexity The time complexity is o(n) because in the worst case we run over the array once, and using
      * our help method called subArrayFormula a few times which is in the worst case o(n) so o(2n) => o(n)
+     * The Space complexity is O(1) because we have only three memory slots and the array is being given so
+     * we son't count it, so O(1).
      * @return The number of all high order sorted sub arrays in the given array
      */
     public static int strictlyIncreasing (int[] a){
@@ -103,7 +107,7 @@ public class Ex14 {
                 tempLongestSequence ++;
             else {
                 sortedSubArraysCounter += subArrayFormula(tempLongestSequence);
-                tempLongestSequence = MIN;
+                tempLongestSequence = 1;
             }
         }
 
@@ -115,6 +119,7 @@ public class Ex14 {
 
     // This method gets a number and returns the number of its sub arrays.
     // This method is o(n) because it runs one time from number to 1.
+    // The Space complexity is O(1) because we have only two memory slots so O(1).
     private static int subArrayFormula(int number){
         int result = 0;
         int counter = 1;
@@ -141,11 +146,7 @@ public class Ex14 {
 
         // returns the max number between the current flat sequence to the recursive
         // call with a sliced array.
-        return Math.max(
-                longestFlatSequence(Arrays.copyOfRange(arr,
-                        (seqLen > 0) ? seqLen : 1,
-                        arr.length)),
-                seqLen);
+        return Math.max(longestFlatSequence(Arrays.copyOfRange(arr, 1, arr.length)), seqLen);
 
     }
 
