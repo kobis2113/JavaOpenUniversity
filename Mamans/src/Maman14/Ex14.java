@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Ex14 {
     /*
      * Question 1
-     * A. 3, 5 are the right
+     * A. 3, 5 are the right answers
      *******************************************/
 
     private static final int MIN = 0;
@@ -23,7 +23,7 @@ public class Ex14 {
      * @return True if the value is in the array and False if its not.
      */
     public static boolean findValWhat (int [][] m, int val){
-        // Get array length
+        // Get the array length
         int arrayLength = m.length;
 
         // Loop over the array len
